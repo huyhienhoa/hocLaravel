@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return \Illuminate\Support\Facades\View::make('home');
 });
-Route::get('demo',function () {
-    return 'Đây là demo đầu tiên';
+Route::get('about',function () {
+    return \Illuminate\Support\Facades\View::make('about');
 });
 
 Route::get("demo1","HomeController@getFirst");
@@ -25,7 +25,6 @@ Route::get('/san-pham/{name}/{id}', function ($name,$id){
 })->where(array('name' => '[a-z]+','id' => '[0-9]+'));
 
 
-Route::get('test','HomeController@test');
-Route::get('kiemtra',function (){
-    return view('luyentap');
+Route::get('contact',function (){
+    return 'This is our contact page';
 });
