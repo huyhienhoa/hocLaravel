@@ -10,21 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return \Illuminate\Support\Facades\View::make('home');
-});
-Route::get('about',function () {
-    return \Illuminate\Support\Facades\View::make('about');
-});
+Auth::routes();
 
-Route::get("demo1","HomeController@getFirst");
+Route::get('categories','HomeController@index')->name('categories');
 
-Route::get('/san-pham/{name}/{id}', function ($name,$id){
-    echo "Bạn đang xem sản phẩm ".$name." có ID là ".$id;
-})->where(array('name' => '[a-z]+','id' => '[0-9]+'));
+Route::get('/add','HomeController@showAddForm')->name('addCategory');
 
+Route::post('/add','HomeController@createCategory');
 
-Route::get('contact',function (){
-    return 'This is our contact page';
-});
+Route::get('/edit/{id}','HomeController@showEditForm')->name('edit');
+
+Route::post('/edit/{id}','HomeController@updateCategory');
+
+Route::get('delete/{id}','HomeController@showDeleteForm')->name('delete');
+
+Route::post('/delete/{id}','HomeController@deleteCategory');
